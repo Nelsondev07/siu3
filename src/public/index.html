@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLicense</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(../images/);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;    
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .card h2 {
+            color: #34495e;
+        }
+        .card p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        #checkout {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #checkout:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to EduLicense</h1>
+
+    <div class="card">
+        <h2>Licencia Premium</h2>
+        <p>Disfruta de los beneficios de una licencia educativa premium con acceso para hasta <strong>1200 usuarios</strong>. Ideal para instituciones que buscan maximizar el aprendizaje.</p>
+        <button id="checkout">Adquirir Licencia</button>
+    </div>
+    <script>
+        const checkout = document.getElementById('checkout');
+        checkout.addEventListener('click', async () =>{
+            const response = await fetch('/create-order',{
+                method: 'POST'
+            })
+            const data = await response.json()
+            window.location.href = data.links[1].href
+        })
+    </script>
+</body>
+</html>
